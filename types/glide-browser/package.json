@@ -1,0 +1,16 @@
+{
+    "name": "@types/glide-browser",
+    "version": "0.1.55a",
+    "projects": [
+        "https://github.com/glide-browser/glide"
+    ],
+    "devDependencies": {
+        "@types/glide-browser": "workspace:."
+    },
+    "owners": [
+        {
+            "name": "Robert Craigie",
+            "githubUsername": "RobertCraigie"
+        }
+    ]
+}
