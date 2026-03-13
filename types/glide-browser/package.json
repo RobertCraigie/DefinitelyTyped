@@ -1,6 +1,7 @@
 {
     "name": "@types/glide-browser",
-    "version": "0.1.55a",
+    "private": true,
+    "version": "55.55.9999",
     "projects": [
         "https://github.com/glide-browser/glide"
     ],

@@ -1582,15 +1582,15 @@ declare global {
 		/**
 		 * Represents a process that has exited.
 		 */
-		export type CompletedProcess = glide.Process & {
+		type CompletedProcess = glide.Process & {
 			exit_code: number;
 		};
-		export type RGBString = `#${string}` | `rgb(${string})`;
+		type RGBString = `#${string}` | `rgb(${string})`;
 		/** A web extension tab that is guaranteed to have the `ts:id` property present. */
-		export type TabWithID = Omit<Browser.Tabs.Tab, "id"> & {
+		type TabWithID = Omit<Browser.Tabs.Tab, "id"> & {
 			id: number;
 		};
-		export type AddonInstallOptions = {
+		type AddonInstallOptions = {
 			/**
 			 * If `true`, always install the given addon, even if it is already installed.
 			 *
@@ -1598,7 +1598,7 @@ declare global {
 			 */
 			force?: boolean;
 		};
-		export type Addon = {
+		type Addon = {
 			readonly id: string;
 			readonly name: string;
 			readonly description: string;
@@ -1607,12 +1607,12 @@ declare global {
 			readonly source_uri: URL | null;
 			uninstall(): Promise<void>;
 		};
-		export type AddonInstall = glide.Addon & {
+		type AddonInstall = glide.Addon & {
 			cached: boolean;
 		};
 		// @docs-expand-type-body
-		export type AddonType = "extension" | "theme" | "locale" | "dictionary" | "sitepermission";
-		export type KeyEvent = KeyboardEvent & {
+		type AddonType = "extension" | "theme" | "locale" | "dictionary" | "sitepermission";
+		type KeyEvent = KeyboardEvent & {
 			/**
 			 * The vim notation of the KeyEvent, e.g.
 			 *
@@ -1620,16 +1620,16 @@ declare global {
 			 */
 			glide_key: string;
 		};
-		export type KeySendOptions = {
+		type KeySendOptions = {
 			/**
 			 * Send the key event(s) directly through to the builtin Firefox
 			 * input handler and skip all of the mappings defined in Glide.
 			 */
 			skip_mappings?: boolean;
 		};
-		export type KeymapCallback = (props: glide.KeymapCallbackProps) => void;
-		export type KeymapContentCallback = glide.ContentFunction<() => void>;
-		export type KeymapCallbackProps = {
+		type KeymapCallback = (props: glide.KeymapCallbackProps) => void;
+		type KeymapContentCallback = glide.ContentFunction<() => void>;
+		type KeymapCallbackProps = {
 			/**
 			 * The tab that the callback is being executed in.
 			 */
@@ -1638,24 +1638,24 @@ declare global {
 		/**
 		 * Represents a function that will be executed in the content process.
 		 */
-		export interface ContentFunction<F extends (...args: any[]) => any> {
+		interface ContentFunction<F extends (...args: any[]) => any> {
 			$brand: "$glide.content.fn";
 			fn: F;
 			name: string;
 		}
 		/// @docs-skip
-		export type ExcmdCreateProps = {
+		type ExcmdCreateProps = {
 			name: string;
 			description?: string | undefined;
 		};
 		/// @docs-skip
-		export type ExcmdValue = glide.ExcmdString | glide.ExcmdCallback | glide.ExcmdContentCallback | glide.KeymapCallback | glide.KeymapContentCallback;
+		type ExcmdValue = glide.ExcmdString | glide.ExcmdCallback | glide.ExcmdContentCallback | glide.KeymapCallback | glide.KeymapContentCallback;
 		/// @docs-skip
-		export type ExcmdCallback = (props: glide.ExcmdCallbackProps) => void | Promise<void>;
+		type ExcmdCallback = (props: glide.ExcmdCallbackProps) => void | Promise<void>;
 		/// @docs-skip
-		export type ExcmdContentCallback = glide.ContentFunction<(props: glide.ExcmdContentCallbackProps) => void>;
+		type ExcmdContentCallback = glide.ContentFunction<(props: glide.ExcmdContentCallbackProps) => void>;
 		/// @docs-skip
-		export type ExcmdCallbackProps = {
+		type ExcmdCallbackProps = {
 			/**
 			 * The tab that the callback is being executed in.
 			 */
@@ -1669,7 +1669,7 @@ declare global {
 			args_arr: string[];
 		};
 		/// @docs-skip
-		export type ExcmdContentCallbackProps = {
+		type ExcmdContentCallbackProps = {
 			/**
 			 * The args passed to the excmd.
 			 *
@@ -1679,13 +1679,13 @@ declare global {
 			args_arr: string[];
 		};
 		/// @docs-skip
-		export type ExcmdString = 
+		type ExcmdString = 
 		// builtin
 		GlideCommandString
 		// custom
 		 | keyof ExcmdRegistry | `${keyof ExcmdRegistry} ${string}`;
 		/// @docs-skip
-		export type Hint = {
+		type Hint = {
 			id: number;
 			x: number;
 			y: number;
@@ -1693,19 +1693,19 @@ declare global {
 			height: number;
 		};
 		/// @docs-skip
-		export type ContentHint = glide.Hint & {
+		type ContentHint = glide.Hint & {
 			element: HTMLElement;
 		};
 		/// @docs-skip
-		export type ResolvedHint = glide.Hint & {
+		type ResolvedHint = glide.Hint & {
 			label: string;
 		};
-		export type HintLabelGenerator = (ctx: {
+		type HintLabelGenerator = (ctx: {
 			hints: glide.Hint[];
 		}) => string[];
-		export type HintLocation = "content" | "browser-ui";
-		export type HintAction = "click" | "newtab-click" | ((props: glide.HintActionProps) => Promise<void> | void);
-		export type HintActionProps = {
+		type HintLocation = "content" | "browser-ui";
+		type HintAction = "click" | "newtab-click" | ((props: glide.HintActionProps) => Promise<void> | void);
+		type HintActionProps = {
 			/**
 			 * The resolved hint that is being executed.
 			 */
@@ -1723,14 +1723,14 @@ declare global {
 				execute<R>(cb: (target: HTMLElement) => R | Promise<R>): Promise<R extends Promise<infer U> ? U : R>;
 			};
 		};
-		export type SplitViewCreateOpts = {
+		type SplitViewCreateOpts = {
 			id?: string;
 		};
-		export type SplitView = {
+		type SplitView = {
 			id: string;
 			tabs: Browser.Tabs.Tab[];
 		};
-		export type KeyNotation = {
+		type KeyNotation = {
 			/**
 			 * @example <leader>
 			 * @example h
@@ -1746,14 +1746,14 @@ declare global {
 			meta: boolean;
 			shift: boolean;
 		};
-		export type Keymap = {
+		type Keymap = {
 			sequence: string[];
 			lhs: string;
 			rhs: glide.ExcmdValue;
 			description: string | undefined;
 			mode: GlideMode;
 		};
-		export type KeymapOpts = {
+		type KeymapOpts = {
 			description?: string | undefined;
 			/**
 			 * If `true`, applies the mapping for the current buffer instead of globally.
@@ -1770,8 +1770,8 @@ declare global {
 			 */
 			retain_key_display?: boolean;
 		};
-		export type KeymapDeleteOpts = Pick<glide.KeymapOpts, "buffer">;
-		export type CommandLineShowOpts = {
+		type KeymapDeleteOpts = Pick<glide.KeymapOpts, "buffer">;
+		type CommandLineShowOpts = {
 			/**
 			 * Fill the commandline with this input by default.
 			 */
@@ -1800,7 +1800,7 @@ declare global {
 			 */
 			options?: glide.CommandLineCustomOption[];
 		};
-		export type CommandLineCustomOption = {
+		type CommandLineCustomOption = {
 			/** Primary text shown for this option. */
 			label: string;
 			/** Optional secondary text rendered next to the label. */
@@ -1911,7 +1911,7 @@ declare global {
 			 */
 			send<MessageName extends keyof Messages>(name: MessageName): void;
 		}
-		export type FileInfo = {
+		type FileInfo = {
 			type: "file" | "directory" | null;
 			permissions: number | undefined;
 			last_accessed: number | undefined;
